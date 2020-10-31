@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>记事本</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="notepad">
+            <input type="text" placeholder="请输入任务，按Enter添加" v-model="newItem" v-on:keyup.enter="addItem"/>
+            <ul>
+                <li v-for="(item, index) in items">
+                    {{index + 1}}. {{item}} <input type="button" value="删除" v-on:click="deleteItem(index)"/>
+                </li>
+            </ul>
+            <div v-show="items.length > 0">
+                共{{items.length}}条 <input type="button" value="清空" v-on:click="clear"/>
+            </div>
+        </div>
+    </body>
+    <script>
+        var notepad = new Vue(
+            {
+                el: "#notepad",
+                data:
+                {
+                    newItem: "",
+                    items: ["项目1", "项目2", "项目3"]
+                },
+                methods:
+                {
+                    addItem: function()
+                    {
+                        this.items.push(this.newItem);
+                        this.newItem = "";
+                    },
+                    deleteItem: function(index)
+                    {
+                        this.items.splice(index, 1);
+                    },
+                    clear: function()
+                    {
+                        this.items = [];
+                    }
+                }
+            }
+        );
+    </script>
+</html>
