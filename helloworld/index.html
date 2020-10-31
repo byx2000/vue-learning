@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>hello world</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div>{{message}}</div>
+            <div>
+                name: <span>{{obj.name}}</span><br/>
+                age: <span>{{obj.age}}</span><br/>
+            </div>
+            <div>{{list[0]}} {{list[1]}} {{list[2]}}</div>
+        </div>
+    </body>
+    <script>
+        var app = new Vue(
+        {
+            el: "#app",
+            data: 
+            {
+                message: "Hello",
+                obj: 
+                {
+                    name: "ZhangSan",
+                    age: 35
+                },
+                list: [1, 2, 3, 4, 5]
+            }
+        });
+    </script>
+</html>

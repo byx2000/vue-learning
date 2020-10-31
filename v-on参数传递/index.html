@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>v-on参数传递</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <input type="button" value="点击" v-on:click="onClick('hello')"/>
+        </div>
+    </body>
+    <script>
+        var app = new Vue(
+            {
+                el: "#app",
+                methods:
+                {
+                    onClick: function(msg)
+                    {
+                        alert(msg);
+                    }
+                }
+            }
+        );
+    </script>
+</html>

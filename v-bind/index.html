@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>v-bind指令</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <style>
+            .c1
+            {
+                width: 100px;
+                height: 100px;
+                background: red;
+            }
+            .c2
+            {
+                width: 100px;
+                height: 100px;
+                background: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <input type="button" v-bind:value="text" v-on:click="toggle"/>
+            <div :class="isActive ? 'c1' : 'c2'"></div>
+        </div>
+    </body>
+    <script>
+        var app = new Vue(
+        {
+            el: "#app",
+            data: 
+            {
+                text: "hello",
+                isActive: true
+            },
+            methods:
+            {
+                toggle: function()
+                {
+                    if (this.text === "hello") this.text = "hi";
+                    else this.text = "hello";
+                    this.isActive = !this.isActive;
+                }
+            }
+        });
+    </script>
+</html>

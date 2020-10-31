@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>图片切换</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <img v-bind:src="images[index]" width="100%">
+            <input type="button" value="上一张" v-show="index > 0" v-on:click="prev"/>
+            <input type="button" value="下一张" v-show="index < images.length - 1" v-on:click="next"/>
+        </div>
+    </body>
+    <script>
+        var app = new Vue(
+            {
+                el: "#app",
+                data:
+                {
+                    images: ["images/1.png", "images/2.png", "images/3.jpg"],
+                    index: 0
+                },
+                methods:
+                {
+                    prev: function()
+                    {
+                        this.index = Math.max(0, this.index - 1);
+                    },
+                    next: function()
+                    {
+                        this.index = (this.index + 1) % this.images.length;
+                    }
+                }
+            }
+        );
+    </script>
+</html>

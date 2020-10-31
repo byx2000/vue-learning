@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>v-for指令</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <ul>
+                <li v-for="(item, index) in items">
+                    index = {{index}} item = {{item}}
+                </li>
+            </ul>
+            <table border="1">
+                <tr>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>qq</th>
+                </tr>
+                <tr v-for="student in students">
+                    <td>{{student.name}}</td>
+                    <td>{{student.age}}</td>
+                    <td>{{student.qq}}</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+    <script>
+        var app = new Vue(
+        {
+            el: "#app",
+            data: 
+            {
+                items: ["北京", "上海", "广州", "深圳"],
+                students: 
+                [
+                    {name: "张三", age: 17, qq: "1234567890"},
+                    {name: "李四", age: 35, qq: "0987654321"},
+                    {name: "王五", age: 21, qq: "9876543210"}
+                ]
+            }
+        });
+    </script>
+</html>

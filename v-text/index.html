@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>v-text指令</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div v-text="message">abc</div>
+            <div>{{message}} abc</div>
+            <div v-text="message + '!'"></div>
+            <div>{{message + "!"}}</div>
+        </div>
+    </body>
+    <script>
+        var app = new Vue(
+        {
+            el: "#app",
+            data: 
+            {
+                message: "Hello",
+            }
+        });
+    </script>
+</html>
