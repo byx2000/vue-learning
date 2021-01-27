@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>父子组件传递数据</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="parent">
+            <child :categories="categories"
+                   @on-category-click="onclick">
+            </child>
+            <h2>当前选中：{{category.name}}</h2>
+        </div>
+    </body>
+    <template id="child">
+        <div>
+            <button v-for="category in categories"
+                    @click="onclick(category)">
+                {{category.name}}
+            </button>
+        </div>
+    </template>
+    <script>
+        // 子组件
+        const child = 
+        {
+            template: "#child",
+            props: 
+            {
+                categories:
+                {
+                    type: Array,
+                    default() { return []; }
+                }
+            },
+            methods:
+            {
+                onclick(category)
+                {
+                    this.$emit("on-category-click", category);
+                }
+            }
+        };
+
+        // 父组件
+        const parent = new Vue(
+            {
+                el: "#parent",
+                data:
+                {
+                    categories: 
+                    [
+                        {id: 1, name: "手机"},
+                        {id: 2, name: "家电"},
+                        {id: 3, name: "美食"},
+                        {id: 4, name: "家具"}
+
+                    ],
+                    category: {name: "未选中"}
+                },
+                components:
+                {
+                    "child": child
+                },
+                methods:
+                {
+                    onclick(category)
+                    {
+                        this.category = category;
+                    }
+                }
+            }
+        );
+    </script>
+</html>
