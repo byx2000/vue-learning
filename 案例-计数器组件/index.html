@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>案例-计数器组件</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <counter></counter>
+            <counter></counter>
+            <counter></counter>
+        </div>
+    </body>
+    <template id="counter">
+        <div>
+            <h2>当前计数：{{count}}</h2>
+            <button @click="inc">+</button>
+            <button @click="dec">-</button>
+        </div>
+    </template>
+    <script>
+        // 注册全局组件
+        Vue.component("counter",
+        {
+            template: "#counter",
+            data()
+            {
+                return {
+                    count: 0
+                }
+            },
+            methods:
+            {
+                inc()
+                {
+                    this.count++;
+                },
+                dec()
+                {
+                    this.count--;
+                }
+            }
+        });
+
+        const app = new Vue(
+            {
+                el: "#app"
+            }
+        );
+    </script>
+</html>
