@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>父组件访问子组件</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="parent">
+            <h2>这里是父组件</h2>
+            <button @click="onclick">访问子组件</button>
+            <child></child>
+            <child ref="aaa"></child>
+            <child></child>
+        </div>
+    </body>
+    <template id="child">
+        <div>
+            <h2>{{message}}</h2>
+        </div>
+    </template>
+    <script>
+        // 子组件
+        const child = 
+        {
+            template: "#child",
+            data()
+            {
+                return {
+                    message: "这里是子组件"
+                }
+            },
+            methods:
+            {
+                doSomething()
+                {
+                    console.log("doSomething");
+                }
+            }
+        };
+
+        // 父组件
+        const parent = new Vue(
+            {
+                el: "#parent",
+                components:
+                {
+                    "child": child
+                },
+                methods:
+                {
+                    onclick()
+                    {
+                        console.log(this.$refs.aaa);
+                        this.$refs.aaa.message = "你好";
+                    }
+                }
+            }
+        );
+    </script>
+</html>
