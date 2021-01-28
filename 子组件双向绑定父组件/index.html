@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>子组件双向绑定父组件</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="parent">
+            <child :number="number" @number-change="numberChange"/>
+        </div>
+    </body>
+    <template id="child">
+        <div>
+            <h2>{{number}}</h2>
+            <h2>{{dnumber}}</h2>
+            <input type="text" v-model="dnumber" @input="numberChange"/>
+        </div>
+    </template>
+    <script>
+        const parent = new Vue(
+            {
+                el: "#parent",
+                data: 
+                {
+                    number: 0
+                },
+                methods:
+                {
+                    numberChange(number)
+                    {
+                        this.number = parseInt(number);
+                    }
+                },
+                components:
+                {
+                    child: 
+                    {
+                        template: "#child",
+                        props:
+                        {
+                            number: Number
+                        },
+                        data()
+                        {
+                            return {
+                                dnumber: this.number
+                            };
+                        },
+                        methods:
+                        {
+                            numberChange()
+                            {
+                                this.$emit("number-change", this.dnumber);
+                            }
+                        }
+                    }
+                }
+            }
+        );
+    </script>
+</html>
