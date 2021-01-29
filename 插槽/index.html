@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>插槽</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="parent">
+            <child>
+                <button slot="left">left</button>
+                <button slot="mid">mid</button>
+                <button slot="right">right</button>
+            </child>
+        </div>
+    </body>
+    <template id="child">
+        <div>
+            <h2>这里是标题</h2>
+            <p>这里是内容</p>
+            <slot name="left"></slot>
+            <slot name="mid"></slot>
+            <slot name="right"></slot>
+        </div>
+    </template>
+    <script>
+        // 子组件
+        const child = 
+        {
+            template: "#child"
+        };
+
+        // 父组件
+        const parent = new Vue(
+            {
+                el: "#parent",
+                components:
+                {
+                    "child": child
+                }
+            }
+        );
+    </script>
+</html>
