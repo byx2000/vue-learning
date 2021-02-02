@@ -6,7 +6,8 @@ module.exports =
     output: 
     {
         path: path.resolve(__dirname, "dist"),
-        filename: "bundle.js"
+        filename: "bundle.js",
+        publicPath: "dist/"
     },
     module: 
     {
@@ -15,6 +16,16 @@ module.exports =
           {
             test: /\.css$/,
             use: [ 'style-loader', 'css-loader' ]
+          },
+          {
+            test: /\.(png|jpg|gif|jpeg)$/,
+            use: 
+            [
+              {
+                loader: 'file-loader',
+                options: {}
+              }
+            ]
           }
         ]
     }
