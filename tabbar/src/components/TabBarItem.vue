@@ -6,7 +6,7 @@
     <div v-else>
       <slot name="icon-active"/>
     </div>
-    <div :class="{active: isActive}">
+    <div :style="activeStyle">
       <slot name="text"/>
     </div>
   </div>
@@ -15,13 +15,17 @@
 <script>
 export default {
   name: 'TabBarItem',
-  data() {
-    return {
-      isActive: true
+  computed: {
+    isActive() {
+      return this.$route.path.indexOf(this.path) !== -1;
+    },
+    activeStyle() {
+      return this.isActive ? {color: this.activeColor} : {}
     }
   },
   props: {
-    path: String
+    path: String,
+    activeColor: String
   },
   methods: {
     itemClick() {
@@ -44,9 +48,5 @@ export default {
     width: 24px;
     height: 24px;
     vertical-align: middle;
-  }
-
-  .active {
-    color: #06a17e;
   }
 </style>
