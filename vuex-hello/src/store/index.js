@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { DECREMENT, INCREMENT, INCREMENT_BY } from './mutations-types'
 
 Vue.use(Vuex)
 
@@ -21,14 +22,26 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    increment(state) {
+    [INCREMENT](state) {
       state.count++
     },
-    decrement(state) {
+    [DECREMENT](state) {
       state.count--;
+    },
+    [INCREMENT_BY](state, count) {
+      state.count += count
     }
   },
   actions: {
+    [INCREMENT](context, payload) {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          context.commit(INCREMENT)
+          console.log('payload: ', payload)
+          resolve('处理结果')
+        }, 1000)
+      })
+    }
   },
   modules: {
   }
